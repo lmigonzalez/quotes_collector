@@ -1,0 +1,39 @@
+
+.quote-container{
+	background-color: #EEEEEE;
+	border: 2px solid #DDDDDD;
+	border-radius: 0.5rem;
+	min-height: 10rem;
+}
+
+.text-container{
+	width: 100%;
+	padding: 1rem;
+}
+
+.links-container{
+	background-color:#DDDDDD ;
+	width: 100%;
+	padding: 0.5rem 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+}
+.links-container .icon{
+	font-size: 1.5rem;
+	margin-right: 1rem;
+	cursor: pointer;
+}
+.links-container p{
+	display: contents;
+	font-size: 1.3rem;
+	background-color: aqua;
+}
+
+.like{
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

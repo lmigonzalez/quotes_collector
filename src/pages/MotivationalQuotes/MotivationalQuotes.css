@@ -1,0 +1,8 @@
+.quotes-container{
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 2rem;
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+}
