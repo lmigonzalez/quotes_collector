@@ -1,23 +1,20 @@
 import React, {useState} from "react";
-import axios from "axios";
+import { useParams } from "react-router-dom";
 
-import "./AddQuote.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./EditQuote.css";
 import { Form, Button } from "react-bootstrap";
 
-import { useNavigate } from "react-router-dom";
+const EditQuote = ({quoteToUpdate}) => {
 
-const AddQuote = (props) => {
-  const {token, userId} = props
+  const params = useParams()
+  console.log(quoteToUpdate)
 
-  const navigator = useNavigate()
 
   const initialData = {
-		quote: '',
-	  author: '',
-    categories: 'Love',
-    userId: userId,
-
+	  quote: quoteToUpdate.quote,
+	  author: quoteToUpdate.author ? quoteToUpdate.author: 'unknown',
+    categories: quoteToUpdate.categories ?quoteToUpdate.categories: 'Love',
 	}
 
 	const [quoteData, setQuoteData] = useState(initialData)
@@ -25,33 +22,32 @@ const AddQuote = (props) => {
 
 
 
-	const handleSubmit = (e) =>{
-		e.preventDefault();
+	// const handleSubmit = (e) =>{
+	// 	e.preventDefault();
 
-    if(!token){
-      console.log('no token!!!, login to get a new token')
-    }
+    // if(!token){
+    //   console.log('no token!!!, login to get a new token')
+    // }
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    // const config = {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // }
       
   
-		const data = JSON.stringify(quoteData)
+	// 	const data = JSON.stringify(quoteData)
 
-		axios.post('http://localhost:3000/api/quote/post', data, config)
-		.then(res=>{
-			console.log(res)
-      navigator('/')
-		})
-		.catch(err=>{
-			console.log(err)
-		})
+	// 	axios.post('http://localhost:3000/api/quote/post', data, config)
+	// 	.then(res=>{
+	// 		console.log(res)
+	// 	})
+	// 	.catch(err=>{
+	// 		console.log(err)
+	// 	})
 
-	}
+	// }
 
 	const handleChange = (e) =>{
 		setQuoteData({
@@ -60,16 +56,12 @@ const AddQuote = (props) => {
 
 	}
 
-  const handleCancel = () =>{
-    navigator('/')
-  }
-
 
   return (
     <section className="form-section">
       <div className="form">
         <h1>Add New Quote</h1>
-        <Form onSubmit={handleSubmit}>
+        <Form >
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Quote</Form.Label>
             <Form.Control as="textarea" placeholder="Enter your quote here..." rows={3} name="quote" value={quoteData.quote} onChange={handleChange}/>
@@ -87,10 +79,7 @@ const AddQuote = (props) => {
           </Form.Select>
 
           <Button variant="primary" type="submit">
-            Submit
-          </Button>
-          <Button variant="danger" onClick={handleCancel}>
-          Cancel
+            Update
           </Button>
         </Form>
       </div>
@@ -98,4 +87,4 @@ const AddQuote = (props) => {
   );
 };
 
-export default AddQuote;
+export default EditQuote;

@@ -7,12 +7,12 @@ import { IoIosCopy } from "react-icons/io";
 
 import "./Quote.css";
 
-const Quote = () => {
+const Quote = ({quote}) => {
   return (
 	<section className="quote-container">
 		<div className="text-container">
-			<p>"Don't judge each day by the harvest you reap but by the seeds that you plant. Don't judge each day by the harvest you reap but by the seeds that you plant." </p>
-			<p>-Robert Louis Stevenson</p>
+			<p>{quote.quote}</p>
+			<p>{quote.author}</p>
 
 		</div>
 

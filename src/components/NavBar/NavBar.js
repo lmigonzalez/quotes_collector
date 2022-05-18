@@ -3,17 +3,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './NavBar.css'
 import { Navbar, Container, Nav, Button  } from 'react-bootstrap';
 import {NavLink, useNavigate} from 'react-router-dom';
+import {FaUserCircle} from "react-icons/fa";
 
 
-const NavBar = () => {
+const NavBar = ({userId}) => {
 	const navigate = useNavigate()
 	
-	const handleClick = () =>{
+	const handleLogin = () =>{
 		navigate('./login')
 	}
 
 	const handleAddQuote = () =>{
 		navigate('./addquote')
+	}
+
+	const handleProfile = () =>{
+		navigate(`/profile/${userId}`)
 	}
 
 
@@ -41,8 +46,9 @@ const NavBar = () => {
 			  </NavLink>
 			  
           </Nav>
-		  <Button variant="light" onClick={handleClick} Navigate to='/login'>Log in</Button>
+		  <Button variant="light" onClick={handleLogin}>Log in</Button>
 		  <Button variant="outline-light" className="mx-2" onClick={handleAddQuote}>Add Quote</Button>
+		  <FaUserCircle className="user-icon" onClick={handleProfile}/>
         </Container>
       </Navbar>
     </>
