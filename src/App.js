@@ -22,11 +22,13 @@ function App() {
   const [quotes, setQuotes] = useState([])
   const [quoteToUpdate, setQuoteToUpdate]= useState(null)
   const [name, setName] = useState(null)
-  console.log(userId)
+  const [liked, setLiked] = useState(false)
+
+
 
   useEffect(()=>{
     getQuotes()
-  }, [])
+  }, [liked])
 
   function getQuotes(){
     axios.get('http://localhost:3000/api/quote/quotes')
@@ -45,7 +47,7 @@ function App() {
       <NavBar userId = {userId}/>
       <Routes>
         <Route path='/' element={<Quotes
-         quotes={quotes} userId={userId} token = {token} 
+         quotes={quotes} userId={userId} token = {token} setLiked= {setLiked} liked = {liked}
         />}></Route>
 
         <Route path='/lovequotes' element={<LoveQuotes/>}></Route>

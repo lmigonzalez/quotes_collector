@@ -6,8 +6,18 @@ import { IoIosCopy } from "react-icons/io";
 
 import "./Quote.css";
 
-const Quote = ({ quote, userId, token }) => {
-  // console.log(quote._id)
+const Quote = ({ quote, userId, token, setLiked, liked }) => {
+
+
+  const checkIfLiked = () =>{
+	  if(quote.likes.includes(userId)){
+		  return 'icon-red'
+	  }
+	  else{
+		  return 'icon'
+	  }
+  }
+
 
   const handleLike = () => {
     if (!token) {
@@ -22,19 +32,22 @@ const Quote = ({ quote, userId, token }) => {
     };
 	const id = JSON.stringify(userId)
 
-	  console.log(id)
+	//   console.log(id)
+	//   console.log(quote)
 	  console.log(userId)
-	  console.log(quote)
 
     axios.patch(
         `http://localhost:3000/api/quote/likequote/${quote._id}`, {id:userId}, config,
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+		setLiked(!liked)
       })
       .catch((err) => {
         console.log(err);
       });
+
+	  console.log(checkIfLiked())
   };
 
   return (
@@ -50,7 +63,10 @@ const Quote = ({ quote, userId, token }) => {
           <IoIosCopy className="icon" />
         </div>
         <div className="like">
-          <BsFillSuitHeartFill className="icon" onClick={handleLike} />
+			{
+				<BsFillSuitHeartFill className= {checkIfLiked()}  onClick={handleLike} />
+			}
+          
           <p>{quote.likes.length}</p>
         </div>
       </div>
