@@ -8,8 +8,8 @@ import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 
-const Login = (props) => {
-  const {setToken, setUserId } = props
+const Login = ({setToken, setUserId, setName}) => {
+
 
   const navigate = useNavigate()
 
@@ -35,10 +35,9 @@ const Login = (props) => {
 
 		axios.post('http://localhost:3000/api/user/login', data, config)
 		.then(res=>{
-			console.log(res)
-	
       setToken(res.data.token)
       setUserId(res.data.user.id)
+      setName(res.data.user.name)
       navigate('/')
 		})
 		.catch(err=>{

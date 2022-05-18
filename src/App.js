@@ -21,6 +21,8 @@ function App() {
   const [userId, setUserId] = useState(null)
   const [quotes, setQuotes] = useState([])
   const [quoteToUpdate, setQuoteToUpdate]= useState(null)
+  const [name, setName] = useState(null)
+  console.log(userId)
 
   useEffect(()=>{
     getQuotes()
@@ -43,22 +45,22 @@ function App() {
       <NavBar userId = {userId}/>
       <Routes>
         <Route path='/' element={<Quotes
-         quotes={quotes}
+         quotes={quotes} userId={userId} token = {token} 
         />}></Route>
 
         <Route path='/lovequotes' element={<LoveQuotes/>}></Route>
 
         <Route path='/motivationalquotes' element={<MotivationalQuotes/>}></Route>
 
-        <Route path='/login' element={<Login setToken = {setToken} setUserId = {setUserId}/>}></Route>
+        <Route path='/login' element={<Login setToken = {setToken} setUserId = {setUserId} setName={setName}/>}></Route>
 
         <Route path='/signup' element={<SignUp/>}></Route>
 
         <Route path='/addquote' element={<AddQuote token = {token} userId={userId}/>}></Route>
 
-        <Route path='/profile/:id' element={<Profile quotes={quotes} userId = {userId} setQuoteToUpdate = {setQuoteToUpdate} />}></Route>
+        <Route path='/profile/:id' element={<Profile quotes={quotes} userId = {userId} setQuoteToUpdate = {setQuoteToUpdate} token={token} name ={name} />}></Route>
 
-        <Route path='/editquote/:id' element={<EditQuote quoteToUpdate = {quoteToUpdate}/>}></Route>
+        <Route path='/editquote/:id' element={<EditQuote quoteToUpdate = {quoteToUpdate} token = {token}/>}></Route>
       </Routes>
 
  

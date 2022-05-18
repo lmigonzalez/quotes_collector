@@ -9,15 +9,18 @@ import './Profile.css'
 
 import MyQuote from "../../components/MyQuote/MyQuote";
 
-const Profile = ({userId, setQuoteToUpdate}) => {
+const Profile = ({userId, setQuoteToUpdate, token, name}) => {
+
 	const params = useParams()
-	// console.log(userId)
 	const [quotes, setQuotes] = useState([])
 	const [userInf, setUserInf] = useState({})
+	const [deleteMessage, setDeleteMessage] = useState(null)
+
 
 	useEffect(()=>{
 		getUser()
-	}, [userId])
+		getQuotesByUser()
+	}, [userId, deleteMessage])
 
 	const getUser = () =>{
 
@@ -30,6 +33,7 @@ const Profile = ({userId, setQuoteToUpdate}) => {
 			.catch(err=>{
 				console.log(err)
 			})
+
 		)
 
 	
@@ -47,19 +51,48 @@ const Profile = ({userId, setQuoteToUpdate}) => {
 		})
 	} 
 
+	const deleteQuote = (quoteId) =>{
+		if(!token){
+			console.log('no token!!!, login to get a new token')
+		  }
+	  
+		  const config = {
+			headers: {
+			  'Content-Type': 'application/json',
+			  Authorization: `Bearer ${token}`,
+			},
+		  }
+			
+		
+	  
+			  axios.delete(`http://localhost:3000/api/quote/deletequote/${quoteId}`, config)
+			  .then(res=>{
+				  setDeleteMessage('Quote deleted successfully')
+				  console.log(deleteMessage)
+				})
+				.catch(err=>{
+					console.log(err)
+				})
+				.finally(()=>{
+					
+					setDeleteMessage(null)
+			  	})
+	
+	  }
+
 
 
   return (
     <section className="profile">
       <div className="profile-inf">
-        <p>Luis</p>
-        <p>13 Quotes</p>
+        <p>{name}</p>
+        <p>{quotes.length} {quotes.length <=1? 'Quote': 'Quotes'}</p>
       </div>
 	  {
 		  quotes.length > 0? <Stack gap={3} className="quotes-container">
 		  {quotes.map(quote=>{
 					return(
-						<MyQuote key = {quote._id} quote={quote} setQuoteToUpdate={setQuoteToUpdate}/>
+						<MyQuote key = {quote._id} quote={quote} setQuoteToUpdate={setQuoteToUpdate} token = {token} deleteQuote={deleteQuote}/>
 					)
 	
 				})}
