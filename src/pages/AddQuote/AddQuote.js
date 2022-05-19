@@ -7,8 +7,12 @@ import { Form, Button } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
 
-const AddQuote = (props) => {
-  const {token, userId} = props
+import { useStateContext } from "../../context/StateContext";
+
+const AddQuote = () => {
+
+  const {token, userId} = useStateContext()
+
 
   const navigator = useNavigate()
 

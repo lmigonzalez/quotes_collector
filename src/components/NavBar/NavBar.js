@@ -6,11 +6,25 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import {FaUserCircle} from "react-icons/fa";
 
 
-const NavBar = ({userId}) => {
+import { useStateContext } from "../../context/StateContext";
+
+
+const NavBar = () => {
+
+
+
+	const {userId, login, token, setToken, setUserId} = useStateContext()
 	const navigate = useNavigate()
 	
 	const handleLogin = () =>{
-		navigate('./login')
+		navigate('/login')
+	}
+
+	const handleLogout = () =>{
+		localStorage.removeItem('userData')
+		setToken(null)
+		setUserId(null)
+		navigate('/')
 	}
 
 	const handleAddQuote = () =>{
@@ -46,9 +60,11 @@ const NavBar = ({userId}) => {
 			  </NavLink>
 			  
           </Nav>
-		  <Button variant="light" onClick={handleLogin}>Log in</Button>
+		  {!login?  <Button variant="light" onClick={handleLogin}>Log in</Button>: <Button variant="warning" onClick={handleLogout}>Log out</Button>}
+		 
 		  <Button variant="outline-light" className="mx-2" onClick={handleAddQuote}>Add Quote</Button>
-		  <FaUserCircle className="user-icon" onClick={handleProfile}/>
+		  {login && <FaUserCircle className="user-icon" onClick={handleProfile}/>}
+		  
         </Container>
       </Navbar>
     </>

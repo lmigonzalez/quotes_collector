@@ -7,9 +7,13 @@ import { BsFillSuitHeartFill } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
+import { useStateContext } from "../../context/StateContext";
+
+
 import "./MyQuote.css";
 
-const MyQuote = ({ quote, setQuoteToUpdate, token, deleteQuote }) => {
+const MyQuote = ({quote, deleteQuote}) => {
+  const {setQuoteToUpdate} = useStateContext()
   const navigate = useNavigate();
 
   const editQuote = () => {
@@ -19,7 +23,7 @@ const MyQuote = ({ quote, setQuoteToUpdate, token, deleteQuote }) => {
   };
 
   const handleDeleteQuote = () =>{
-	deleteQuote(quote._id)
+	  deleteQuote(quote._id)
   }
 
   return (
@@ -35,8 +39,8 @@ const MyQuote = ({ quote, setQuoteToUpdate, token, deleteQuote }) => {
           <FaEdit className="icon" onClick={editQuote} />
         </div>
         <div className="like">
-          <BsFillSuitHeartFill className="icon" />
-          <p>11.1k</p>
+          <BsFillSuitHeartFill className="static-icon" />
+          <p>{quote.likes.length}</p>
         </div>
       </div>
     </section>

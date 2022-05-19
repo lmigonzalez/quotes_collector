@@ -4,10 +4,13 @@ import axios from "axios";
 import { BsFillShareFill, BsFillSuitHeartFill } from "react-icons/bs";
 import { IoIosCopy } from "react-icons/io";
 
+import { useStateContext } from "../../context/StateContext";
+
 import "./Quote.css";
 
-const Quote = ({ quote, userId, token, setLiked, liked }) => {
+const Quote = ({quote}) => {
 
+  const {userId, token, setLiked, liked} = useStateContext()
 
   const checkIfLiked = () =>{
 	  if(quote.likes.includes(userId)){
@@ -41,7 +44,7 @@ const Quote = ({ quote, userId, token, setLiked, liked }) => {
       )
       .then((res) => {
         // console.log(res);
-		setLiked(!liked)
+		  setLiked(!liked)
       })
       .catch((err) => {
         console.log(err);

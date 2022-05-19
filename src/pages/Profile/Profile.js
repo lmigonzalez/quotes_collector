@@ -9,18 +9,21 @@ import './Profile.css'
 
 import MyQuote from "../../components/MyQuote/MyQuote";
 
-const Profile = ({userId, setQuoteToUpdate, token, name}) => {
+import { useStateContext } from "../../context/StateContext";
 
-	const params = useParams()
+const Profile = () => {
+
+	const {userId, token, name, quoteDeletedMsg, setQuoteDeletedMsg} = useStateContext()
+
+	
 	const [quotes, setQuotes] = useState([])
-	const [userInf, setUserInf] = useState({})
-	const [deleteMessage, setDeleteMessage] = useState(null)
+	
 
 
 	useEffect(()=>{
 		getUser()
 		getQuotesByUser()
-	}, [userId, deleteMessage])
+	}, [userId, quoteDeletedMsg])
 
 	const getUser = () =>{
 
@@ -67,16 +70,13 @@ const Profile = ({userId, setQuoteToUpdate, token, name}) => {
 	  
 			  axios.delete(`http://localhost:3000/api/quote/deletequote/${quoteId}`, config)
 			  .then(res=>{
-				  setDeleteMessage('Quote deleted successfully')
-				  console.log(deleteMessage)
+				  setQuoteDeletedMsg('Quote deleted successfully')
+				  console.log(quoteDeletedMsg)
 				})
 				.catch(err=>{
 					console.log(err)
 				})
-				.finally(()=>{
-					
-					setDeleteMessage(null)
-			  	})
+			
 	
 	  }
 
@@ -92,7 +92,7 @@ const Profile = ({userId, setQuoteToUpdate, token, name}) => {
 		  quotes.length > 0? <Stack gap={3} className="quotes-container">
 		  {quotes.map(quote=>{
 					return(
-						<MyQuote key = {quote._id} quote={quote} setQuoteToUpdate={setQuoteToUpdate} token = {token} deleteQuote={deleteQuote}/>
+						<MyQuote key = {quote._id} quote={quote} deleteQuote={deleteQuote}/>
 					)
 	
 				})}

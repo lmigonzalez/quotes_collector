@@ -7,10 +7,12 @@ import { Form, Button } from "react-bootstrap";
 
 import { Link, useNavigate } from "react-router-dom";
 
+import { useStateContext } from "../../context/StateContext";
 
-const Login = ({setToken, setUserId, setName}) => {
 
+const Login = () => {
 
+const {setToken, setUserId, setName } = useStateContext()
   const navigate = useNavigate()
 
   const initialData = {
@@ -38,6 +40,9 @@ const Login = ({setToken, setUserId, setName}) => {
       setToken(res.data.token)
       setUserId(res.data.user.id)
       setName(res.data.user.name)
+
+      localStorage.setItem('userData', JSON.stringify({userId:res.data.user.id, token: res.data.token, userName: res.data.user.name }))
+      
       navigate('/')
 		})
 		.catch(err=>{
@@ -53,7 +58,9 @@ const Login = ({setToken, setUserId, setName}) => {
 		
 	}
 
-
+  const handleCancel = () =>{
+    navigate('/')
+  }
 
 
   return (
@@ -73,6 +80,9 @@ const Login = ({setToken, setUserId, setName}) => {
        
           <Button variant="primary" type="submit">
             Submit
+          </Button>
+          <Button variant="danger" onClick={handleCancel}>
+          Cancel
           </Button>
         </Form>
         <div className="register">

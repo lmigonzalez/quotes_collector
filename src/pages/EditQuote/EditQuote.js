@@ -5,10 +5,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./EditQuote.css";
 import { Form, Button } from "react-bootstrap";
+import { useStateContext } from "../../context/StateContext";
 
-const EditQuote = ({quoteToUpdate, token}) => {
+const EditQuote = () => {
+  const {quoteToUpdate, token} = useStateContext()
 
   const navigate = useNavigate()
+
   const quoteToUpdateId = quoteToUpdate._id
   // console.log(quoteToUpdateId)
 

@@ -14,17 +14,38 @@ import AddQuote from './pages/AddQuote/AddQuote';
 import Profile from './pages/Profile/Profile';
 import EditQuote from './pages/EditQuote/EditQuote';
 
+import {useStateContext} from './context/StateContext'
+
+
 
 function App() {
 
-  const [token, setToken] = useState(null)
-  const [userId, setUserId] = useState(null)
-  const [quotes, setQuotes] = useState([])
-  const [quoteToUpdate, setQuoteToUpdate]= useState(null)
-  const [name, setName] = useState(null)
-  const [liked, setLiked] = useState(false)
+  const {liked, setName, setQuotes, setToken, setUserId, login, setLogin, token, userId} = useStateContext()
 
+	const isLogin = () =>{
+		if(token != null){
+			setLogin(true)
+		}else{
+			setLogin(false)
+		}
+		console.log(token)
+	
+	}
 
+  useEffect(()=>{
+    isLogin()
+  }, [token])
+
+  useEffect(()=>{
+    const storedData = JSON.parse(localStorage.getItem('userData'))
+    if(storedData && storedData.token && storedData.userId){
+      setToken(storedData.token)
+      setUserId(storedData.userId)
+      setName(storedData.userName)
+    }
+    
+    
+  }, [])
 
   useEffect(()=>{
     getQuotes()
@@ -33,7 +54,6 @@ function App() {
   function getQuotes(){
     axios.get('http://localhost:3000/api/quote/quotes')
     .then(res=>{
-
       setQuotes(res.data)
 
     }).catch(err=>{
@@ -44,28 +64,24 @@ function App() {
 
   return (
     <section className="App">
-      <NavBar userId = {userId}/>
+      <NavBar/>
       <Routes>
-        <Route path='/' element={<Quotes
-         quotes={quotes} userId={userId} token = {token} setLiked= {setLiked} liked = {liked}
-        />}></Route>
+        <Route path='/' element={<Quotes/>}></Route>
 
         <Route path='/lovequotes' element={<LoveQuotes/>}></Route>
 
         <Route path='/motivationalquotes' element={<MotivationalQuotes/>}></Route>
 
-        <Route path='/login' element={<Login setToken = {setToken} setUserId = {setUserId} setName={setName}/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
 
         <Route path='/signup' element={<SignUp/>}></Route>
 
-        <Route path='/addquote' element={<AddQuote token = {token} userId={userId}/>}></Route>
+        <Route path='/addquote' element={<AddQuote/>}></Route>
 
-        <Route path='/profile/:id' element={<Profile quotes={quotes} userId = {userId} setQuoteToUpdate = {setQuoteToUpdate} token={token} name ={name} />}></Route>
+        <Route path='/profile/:id' element={<Profile />}></Route>
 
-        <Route path='/editquote/:id' element={<EditQuote quoteToUpdate = {quoteToUpdate} token = {token}/>}></Route>
+        <Route path='/editquote/:id' element={<EditQuote/>}></Route>
       </Routes>
-
- 
    
     </section>
   );

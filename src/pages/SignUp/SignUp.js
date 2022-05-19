@@ -3,11 +3,13 @@ import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import './SignUp.css';
 
 const SignUp = () =>{
+
+	const navigate = useNavigate()
 
 	const initialData = {
 		name: '',
@@ -33,6 +35,7 @@ const SignUp = () =>{
 		axios.post('http://localhost:3000/api/user/register', data, config)
 		.then(res=>{
 			console.log(res)
+			navigate('/login')
 		})
 		.catch(err=>{
 			console.log(err)
