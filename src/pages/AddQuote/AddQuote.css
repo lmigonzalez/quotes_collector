@@ -1,14 +1,14 @@
 .form-section{
 	width: 100%;
-	min-height: 100vh;
-	padding: 1rem;
+	/* min-height: 100vh; */
 	display: flex;
 	justify-content: center;
 	align-items:flex-start;
+	/* background-color: aqua; */
 }
 
 .form{
-	width: 25rem;
+	width: 30rem;
 	height: auto;
 	margin-top: 2rem;
 	padding: 1rem;
@@ -25,4 +25,15 @@
 	margin-top: 1rem;
 	width: 100%;
 }
+
+.register{
+	margin-top: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.register p{
+	display: contents;
+}
+
 

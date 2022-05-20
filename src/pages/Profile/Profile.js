@@ -8,6 +8,7 @@ import { Stack } from "react-bootstrap";
 import './Profile.css'
 
 import MyQuote from "../../components/MyQuote/MyQuote";
+import Addbtn from "../../components/AddBtn/Addbtn";
 
 import { useStateContext } from "../../context/StateContext";
 
@@ -98,6 +99,7 @@ const Profile = () => {
 				})}
 		  </Stack> : <p>No quotes</p>
 	  }
+	  <Addbtn/>
       
     </section>
   );

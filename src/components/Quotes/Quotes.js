@@ -5,6 +5,7 @@ import { Stack } from 'react-bootstrap';
 import './Quotes.css'
 
 import Quote from "../Quote/Quote";
+import Addbtn from "../AddBtn/Addbtn";
 
 import { useStateContext } from "../../context/StateContext";
 
@@ -17,6 +18,7 @@ const Quotes = () =>{
 		reverseQuotes = ([...quotes].reverse())
 	}
 	return (
+		<>
 		<Stack gap={3} className= 'quotes-container'>
 			{reverseQuotes && reverseQuotes.map(quote=>{
 				return(
@@ -25,6 +27,8 @@ const Quotes = () =>{
 
 			})}
 		</Stack>
+		<Addbtn/>
+		</>
 
 	)
 }

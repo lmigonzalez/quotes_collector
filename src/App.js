@@ -97,7 +97,7 @@ function App() {
         <Route path='/editquote/:id' element={<EditQuote/>}></Route>
       </Routes>
 
-      <Addbtn/>
+      {/* <Addbtn/> */}
       <Footer/>
    
     </section>
