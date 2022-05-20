@@ -1,0 +1,34 @@
+.notification-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1rem;
+	background-color: #251D3A;
+	color: #fff;
+	position:absolute;
+	right: 0;
+	animation-name: notification;
+	animation-duration:  1s;
+	z-index: 2;
+	/* animation-iteration-count: infinite; */
+}
+
+.notification-icon{
+	font-size: 1.5rem;
+	margin-right: 0.5rem;
+}
+
+.notification-msg{
+	display: contents;
+	font-size: 1.2rem;
+}
+
+@keyframes notification {
+	from{
+		right: -50%;
+	}
+	to{
+		right: 0;
+	}
+  }
+  

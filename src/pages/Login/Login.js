@@ -12,7 +12,7 @@ import { useStateContext } from "../../context/StateContext";
 
 const Login = () => {
 
-const {setToken, setUserId, setName } = useStateContext()
+const {setToken, setUserId, setName, setNotification, setPopUpMsg, closePopUp } = useStateContext()
   const navigate = useNavigate()
 
   const initialData = {
@@ -40,14 +40,20 @@ const {setToken, setUserId, setName } = useStateContext()
       setToken(res.data.token)
       setUserId(res.data.user.id)
       setName(res.data.user.name)
-
       localStorage.setItem('userData', JSON.stringify({userId:res.data.user.id, token: res.data.token, userName: res.data.user.name }))
-      
+      setNotification(false)
+      setPopUpMsg('logged in successfully')
+      setNotification(true)
+      closePopUp()
       navigate('/')
 		})
 		.catch(err=>{
 			console.log(err)
+      setPopUpMsg('Ups, something happened while trying to log in!')
+      setNotification(true)
+      closePopUp()
 		})
+
 
 	}
 

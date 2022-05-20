@@ -12,15 +12,17 @@ export const StateContext = ({children}) =>{
 	const [name, setName] = useState(null)
 	const [liked, setLiked] = useState(false)
 	const [login, setLogin] = useState(false)
+	const [popUps, setPopUps] = useState(false)
+	const [popUpMsg, setPopUpMsg] =useState(null)
+	const [notification, setNotification] = useState(false)
+	
 
 
-
-	// console.log(token)
-	// console.log(userId)
-
-
-
-
+	const closePopUp = () =>{
+		setTimeout(() => {
+			setNotification(false);
+		  }, 5000);
+	}
 
 	return(
 		<Context.Provider
@@ -33,6 +35,9 @@ export const StateContext = ({children}) =>{
 			liked,
 			quoteDeletedMsg,
 			login,
+			popUps, 
+			popUpMsg, 
+			notification,
 			setToken,
 			setUserId,
 			setQuotes,
@@ -41,6 +46,10 @@ export const StateContext = ({children}) =>{
 			setLiked,
 			setQuoteDeletedMsg,
 			setLogin,
+			setPopUps,
+			setPopUpMsg,
+			setNotification,
+			closePopUp,
 		}}
 		>
 			{children}

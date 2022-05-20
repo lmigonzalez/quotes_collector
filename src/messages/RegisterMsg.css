@@ -1,0 +1,47 @@
+.msg-container{
+	min-height: 100vh;
+	width: 100%;
+	position: fixed;
+	background-color: transparent;
+	z-index: 1;
+
+}
+
+.msg-body{
+	padding: 2rem 1rem 1rem;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #fff;
+	border: 2px solid #413F42;
+	border-radius: 0.5rem;
+	max-width: 20rem;
+	color: #000;
+	position: fixed;
+	left: 50%;
+	top: 20%;
+    transform: translate(-50%, 0);
+	z-index: 1;
+}
+
+.closeBtn{
+	position: absolute;
+	font-size: 2rem;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+	color: red;
+}
+
+
+.action-container{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	align-items: center;
+}
+.action-container button{
+	width: 100%;
+	margin: 0.3rem 0;
+
+}

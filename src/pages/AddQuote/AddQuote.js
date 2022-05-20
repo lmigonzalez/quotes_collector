@@ -11,7 +11,7 @@ import { useStateContext } from "../../context/StateContext";
 
 const AddQuote = () => {
 
-  const {token, userId} = useStateContext()
+  const {token, userId, setPopUps, setNotification, setPopUpMsg, closePopUp, setLiked, liked} = useStateContext()
 
 
   const navigator = useNavigate()
@@ -19,7 +19,7 @@ const AddQuote = () => {
   const initialData = {
 		quote: '',
 	  author: '',
-    categories: 'Love',
+    categories: 'Motivational',
     userId: userId,
 
 	}
@@ -45,14 +45,22 @@ const AddQuote = () => {
       
   
 		const data = JSON.stringify(quoteData)
+    console.log(data)
 
 		axios.post('http://localhost:3000/api/quote/post', data, config)
 		.then(res=>{
 			console.log(res)
+      setPopUpMsg('Quote created successfully')
+      setNotification(true)
+      closePopUp()
+      setLiked(!liked)
       navigator('/')
 		})
 		.catch(err=>{
 			console.log(err)
+      setPopUpMsg("Ups, we couldn't create the quote!")
+      setNotification(true)
+      closePopUp()
 		})
 
 	}

@@ -10,7 +10,7 @@ import "./Quote.css";
 
 const Quote = ({quote}) => {
 
-  const {userId, token, setLiked, liked} = useStateContext()
+  const {userId, token, setLiked, liked, setPopUps} = useStateContext()
 
   const checkIfLiked = () =>{
 	  if(quote.likes.includes(userId)){
@@ -24,7 +24,9 @@ const Quote = ({quote}) => {
 
   const handleLike = () => {
     if (!token) {
+      setPopUps(true)
       console.log("no token!!!, login to get a new token");
+      return
     }
 
     const config = {

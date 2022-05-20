@@ -12,10 +12,13 @@ import { useStateContext } from "../../context/StateContext";
 const Quotes = () =>{
 
 	const {quotes, token, userId, setLiked, liked} = useStateContext()
-
+	let reverseQuotes
+	if(quotes.length > 0){
+		reverseQuotes = ([...quotes].reverse())
+	}
 	return (
 		<Stack gap={3} className= 'quotes-container'>
-			{quotes.map(quote=>{
+			{reverseQuotes && reverseQuotes.map(quote=>{
 				return(
 					<Quote key = {quote._id} quote = {quote}/>
 				)

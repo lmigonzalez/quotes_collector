@@ -13,6 +13,10 @@ import SignUp from './pages/SignUp/SignUp';
 import AddQuote from './pages/AddQuote/AddQuote';
 import Profile from './pages/Profile/Profile';
 import EditQuote from './pages/EditQuote/EditQuote';
+import RegisterMsg from './messages/RegisterMsg';
+import NotifMsg from './components/NotifMsg/NotifMsg';
+import Footer from './components/Footer/Footer';
+
 
 import {useStateContext} from './context/StateContext'
 
@@ -20,7 +24,8 @@ import {useStateContext} from './context/StateContext'
 
 function App() {
 
-  const {liked, setName, setQuotes, setToken, setUserId, login, setLogin, token, userId} = useStateContext()
+  const {liked, setName, setQuotes, setToken, setUserId, login, setLogin, token, userId, popUps, notification} = useStateContext()
+
 
 	const isLogin = () =>{
 		if(token != null){
@@ -28,9 +33,10 @@ function App() {
 		}else{
 			setLogin(false)
 		}
-		console.log(token)
-	
+
+
 	}
+
 
   useEffect(()=>{
     isLogin()
@@ -62,9 +68,15 @@ function App() {
   }
 
 
+
   return (
     <section className="App">
       <NavBar/>
+      {notification && <NotifMsg/>}
+ 
+      
+      {popUps && <RegisterMsg/>}
+      
       <Routes>
         <Route path='/' element={<Quotes/>}></Route>
 
@@ -82,6 +94,7 @@ function App() {
 
         <Route path='/editquote/:id' element={<EditQuote/>}></Route>
       </Routes>
+      <Footer/>
    
     </section>
   );
