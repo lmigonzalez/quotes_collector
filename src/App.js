@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom'
 import axios from 'axios';
 
 import './App.css';
+
 
 import NavBar from './components/NavBar/NavBar';
 import Quotes from './components/Quotes/Quotes';
@@ -16,6 +17,7 @@ import EditQuote from './pages/EditQuote/EditQuote';
 import RegisterMsg from './messages/RegisterMsg';
 import NotifMsg from './components/NotifMsg/NotifMsg';
 import Footer from './components/Footer/Footer';
+import Addbtn from './components/AddBtn/Addbtn';
 
 
 import {useStateContext} from './context/StateContext'
@@ -94,6 +96,8 @@ function App() {
 
         <Route path='/editquote/:id' element={<EditQuote/>}></Route>
       </Routes>
+
+      <Addbtn/>
       <Footer/>
    
     </section>

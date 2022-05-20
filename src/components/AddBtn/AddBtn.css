@@ -1,0 +1,7 @@
+.add-mobile-icon{
+	position: fixed;
+	top: 87%; 
+    left: 50%; 
+    transform: translate(-50%,-50%);
+	font-size: 4rem;
+}
