@@ -37,22 +37,20 @@ const Quote = ({quote}) => {
     };
 	const id = JSON.stringify(userId)
 
-	//   console.log(id)
-	//   console.log(quote)
-	  console.log(userId)
+
+
 
     axios.patch(
         `http://localhost:3000/api/quote/likequote/${quote._id}`, {id:userId}, config,
       )
       .then((res) => {
-        // console.log(res);
+
 		  setLiked(!liked)
       })
       .catch((err) => {
         console.log(err);
       });
 
-	  console.log(checkIfLiked())
   };
 
   return (
@@ -81,15 +79,3 @@ const Quote = ({quote}) => {
 
 export default Quote;
 
-{
-  /* <div className="links-container">
-<div className="share-copy">
-  <BsFillShareFill className="icon" />
-  <IoIosCopy className="icon" />
-</div>
-<div className="like-quote">
-  <BsFillSuitHeartFill className="icon" />
-  <p>11.1k</p>
-</div>
-</div> */
-}

@@ -14,7 +14,7 @@ import { useStateContext } from "../../context/StateContext";
 
 const Profile = () => {
 
-	const {userId, token, name, quoteDeletedMsg, setQuoteDeletedMsg} = useStateContext()
+	const {userId, token, name, quoteDeletedMsg, setQuoteDeletedMsg, setNotification, setPopUpMsg, closePopUp} = useStateContext()
 
 	
 	const [quotes, setQuotes] = useState([])
@@ -30,8 +30,8 @@ const Profile = () => {
 
 		if(userId)(
 			axios.get(`http://localhost:3000/api/user/userid/${userId}`)
-			.then((res)=>{
-				// console.log(res)
+			.then(()=>{
+			
 				getQuotesByUser()
 			})
 			.catch(err=>{
@@ -58,6 +58,7 @@ const Profile = () => {
 	const deleteQuote = (quoteId) =>{
 		if(!token){
 			console.log('no token!!!, login to get a new token')
+			return
 		  }
 	  
 		  const config = {
@@ -70,12 +71,15 @@ const Profile = () => {
 		
 	  
 			  axios.delete(`http://localhost:3000/api/quote/deletequote/${quoteId}`, config)
-			  .then(res=>{
-				  setQuoteDeletedMsg('Quote deleted successfully')
-				  console.log(quoteDeletedMsg)
+			  .then(()=>{
+				setPopUpMsg('quote deleted successfully')
+				setNotification(true)
+				closePopUp()
 				})
-				.catch(err=>{
-					console.log(err)
+				.catch(()=>{
+					setPopUpMsg("Oops, we couldn't delete your quote")
+					setNotification(true)
+					closePopUp()
 				})
 			
 	

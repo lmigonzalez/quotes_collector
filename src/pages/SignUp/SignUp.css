@@ -1,35 +1,4 @@
-/* .form-section{
-	width: 100%;
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items:flex-start;
+.form .form-error{
+	text-align: end;
+	color: #FF6363;
 }
-
-.form{
-	width: 25rem;
-	height: auto;
-	margin-top: 2rem;
-	padding: 1rem;
-	background-color: #EEEEEE;
-	border: 2px solid #DDDDDD;
-	border-radius: 0.5rem;
-}
-
-.form h1{
-	text-align: center;
-} 
-
-.form button{
-	width: 100%;
-} */
-
-/* .register{
-	margin-top: 0.5rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.register p{
-	display: contents;
-} */

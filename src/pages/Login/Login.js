@@ -49,7 +49,7 @@ const {setToken, setUserId, setName, setNotification, setPopUpMsg, closePopUp } 
 		})
 		.catch(err=>{
 			console.log(err)
-      setPopUpMsg('Ups, something happened while trying to log in!')
+      setPopUpMsg('Oops, something happened while trying to log in!')
       setNotification(true)
       closePopUp()
 		})

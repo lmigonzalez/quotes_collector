@@ -8,7 +8,7 @@ import { Form, Button } from "react-bootstrap";
 import { useStateContext } from "../../context/StateContext";
 
 const EditQuote = () => {
-  const {quoteToUpdate, token} = useStateContext()
+  const {quoteToUpdate, token, setNotification, setPopUpMsg, closePopUp} = useStateContext()
 
   const navigate = useNavigate()
 
@@ -41,17 +41,28 @@ const EditQuote = () => {
         Authorization: `Bearer ${token}`,
       },
     }
-      
+    
+
+    if(!quoteData.quote.length){
+      setPopUpMsg('quote cannot be empty')
+      setNotification(true)
+      closePopUp()
+      return
+    }
   
-		const data = JSON.stringify(quoteData)
+		// const data = JSON.stringify(quoteData)
 
 		axios.patch(`http://localhost:3000/api/quote/update/${quoteToUpdateId}`, quoteData, config)
-		.then(res=>{
-			console.log(res)
+		.then(()=>{
+      setPopUpMsg('quote edited successfully')
+      setNotification(true)
+      closePopUp()
       navigate(-1)
 		})
-		.catch(err=>{
-			console.log(err)
+		.catch(()=>{
+			setPopUpMsg('Oops, your quote was not edited')
+      setNotification(true)
+      closePopUp()
 		})
 
 	}

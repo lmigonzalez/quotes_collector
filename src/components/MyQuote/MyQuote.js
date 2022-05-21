@@ -19,7 +19,6 @@ const MyQuote = ({quote, deleteQuote}) => {
   const editQuote = () => {
     navigate(`/editquote/${quote._id || quote.id}`);
     setQuoteToUpdate(quote);
-    console.log(quote);
   };
 
   const handleDeleteQuote = () =>{
