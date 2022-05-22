@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,6 +13,7 @@ import Addbtn from "../../components/AddBtn/Addbtn";
 import { useStateContext } from "../../context/StateContext";
 
 const Profile = () => {
+	const [updatePage, setUpdatePage] = useState(false)
 	const navigate = useNavigate()
 	const {userId, token, name, quoteDeletedMsg, setQuoteDeletedMsg, setNotification, setPopUpMsg, closePopUp, backendUrl} = useStateContext()
 
@@ -26,7 +27,7 @@ const Profile = () => {
 	useEffect(()=>{
 		getUser()
 		getQuotesByUser()
-	}, [userId, quoteDeletedMsg])
+	}, [userId, quoteDeletedMsg, updatePage])
 
 	const getUser = () =>{
 
@@ -109,7 +110,7 @@ const Profile = () => {
 		  quotes.length > 0? <Stack gap={3} className="quotes-container">
 		  {quotes.map(quote=>{
 					return(
-						<MyQuote key = {quote._id} quote={quote} deleteQuote={deleteQuote}/>
+						<MyQuote key = {quote._id} quote={quote} deleteQuote={deleteQuote} setUpdatePage={setUpdatePage} updatePage={updatePage}/>
 					)
 	
 				})}

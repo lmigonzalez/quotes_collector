@@ -12,7 +12,7 @@ import { useStateContext } from "../../context/StateContext";
 
 import "./MyQuote.css";
 
-const MyQuote = ({quote, deleteQuote}) => {
+const MyQuote = ({quote, deleteQuote,updatePage, setUpdatePage}) => {
   const {setQuoteToUpdate} = useStateContext()
   const navigate = useNavigate();
 
@@ -23,6 +23,7 @@ const MyQuote = ({quote, deleteQuote}) => {
 
   const handleDeleteQuote = () =>{
 	  deleteQuote(quote._id)
+    setUpdatePage(!updatePage)
   }
 
   return (
