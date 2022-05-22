@@ -136,6 +136,10 @@ const SignUp = () =>{
 		
 	}
 
+	const handleCancel = () =>{
+		navigate('/')
+	  }
+
 
 
 
@@ -164,6 +168,9 @@ const SignUp = () =>{
 			<Button variant="primary" type="submit" >
 			  Submit
 			</Button>
+			<Button variant="danger" onClick={handleCancel}>
+          Cancel
+          </Button>
 		  </Form>
 		  <div className="register">
 			<p>Already have an account?</p>

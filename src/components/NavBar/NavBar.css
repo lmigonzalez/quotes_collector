@@ -13,9 +13,10 @@
 	z-index: 1;
 }
 
-.logo{
+.nav-bar .logo{
 	font-size: 1.8rem;
 	display: contents;
+	color: #fff;
 }
 
 
@@ -87,10 +88,7 @@
 		right: 0;
 		top: 0;
 		z-index: 4;
-		/* animation-name: mobile-menu-ani;
-		animation-duration:  0.5s; */
-		/* background-color:aqua; */
-		
+
 	}
 	
 	.menu-content{

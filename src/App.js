@@ -19,6 +19,8 @@ import NotifMsg from './components/NotifMsg/NotifMsg';
 import Footer from './components/Footer/Footer';
 import Addbtn from './components/AddBtn/Addbtn';
 
+import RequireAuth from './components/RequireAuth/RequireAuth';
+
 
 import {useStateContext} from './context/StateContext'
 
@@ -26,7 +28,7 @@ import {useStateContext} from './context/StateContext'
 
 function App() {
 
-  const {liked, setName, setQuotes, setToken, setUserId, login, setLogin, token, userId, popUps, notification} = useStateContext()
+  const {liked, setName, setQuotes, setToken, setUserId, login, setLogin, token, userId, popUps, notification, quoteToUpdate} = useStateContext()
 
 
 	const isLogin = () =>{
@@ -93,8 +95,14 @@ function App() {
         <Route path='/addquote' element={<AddQuote/>}></Route>
 
         <Route path='/profile/:id' element={<Profile />}></Route>
+        <Route path='/editquote/:id' element={
+          <RequireAuth redirectTo='/'>
+            <EditQuote />
+          </RequireAuth>
+        }>
 
-        <Route path='/editquote/:id' element={<EditQuote/>}></Route>
+        </Route>
+        {/* <Route path='/editquote/:id' element={<EditQuote/>}></Route> */}
       </Routes>
 
       {/* <Addbtn/> */}
@@ -103,5 +111,7 @@ function App() {
     </section>
   );
 }
+
+
 
 export default App;

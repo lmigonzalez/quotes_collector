@@ -25,7 +25,6 @@ const Quote = ({quote}) => {
   const handleLike = () => {
     if (!token) {
       setPopUps(true)
-      console.log("no token!!!, login to get a new token");
       return
     }
 
@@ -44,7 +43,6 @@ const Quote = ({quote}) => {
         `http://localhost:3000/api/quote/likequote/${quote._id}`, {id:userId}, config,
       )
       .then((res) => {
-
 		  setLiked(!liked)
       })
       .catch((err) => {
@@ -57,7 +55,7 @@ const Quote = ({quote}) => {
     <section className="quote-container">
       <div className="text-container">
         <p>{quote.quote}</p>
-        <p>{quote.author}</p>
+        <p>{quote.author?quote.author: 'unknown'}</p>
       </div>
 
       <div className="links-container">

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 import "./AddQuote.css";
@@ -14,11 +14,11 @@ const AddQuote = () => {
   const {token, userId, setPopUps, setNotification, setPopUpMsg, closePopUp, setLiked, liked} = useStateContext()
 
 
-  const navigator = useNavigate()
+  const navigate = useNavigate()
 
   const initialData = {
 		quote: '',
-	  author: '',
+	  author: 'unknown',
     categories: 'Motivational',
     userId: userId,
 
@@ -27,7 +27,9 @@ const AddQuote = () => {
 	const [quoteData, setQuoteData] = useState(initialData)
 
 
-
+  useEffect(()=>{
+		checkIfToken()
+	}, [])
 
 	const handleSubmit = (e) =>{
 		e.preventDefault();
@@ -45,20 +47,19 @@ const AddQuote = () => {
       
   
 		const data = JSON.stringify(quoteData)
-    console.log(data)
+
 
 		axios.post('http://localhost:3000/api/quote/post', data, config)
-		.then(res=>{
-			console.log(res)
+		.then(()=>{
       setPopUpMsg('Quote created successfully')
       setNotification(true)
       closePopUp()
       setLiked(!liked)
-      navigator('/')
+      navigate('/')
 		})
-		.catch(err=>{
-			console.log(err)
-      setPopUpMsg("Ups, we couldn't create the quote!")
+		.catch((err)=>{
+      console.log(err)
+      setPopUpMsg("Oops, we couldn't create the quote!")
       setNotification(true)
       closePopUp()
 		})
@@ -73,8 +74,16 @@ const AddQuote = () => {
 	}
 
   const handleCancel = () =>{
-    navigator('/')
+    navigate('/')
   }
+
+  const checkIfToken = () =>{
+		const storedData = JSON.parse(localStorage.getItem('userData'))
+		if(!storedData){
+				navigate('/') 
+		}
+
+	  }
 
 
   return (

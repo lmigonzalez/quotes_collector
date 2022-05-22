@@ -17,7 +17,6 @@ export const StateContext = ({children}) =>{
 	const [notification, setNotification] = useState(false)
 	
 
-
 	const closePopUp = () =>{
 		setTimeout(() => {
 			setNotification(false);

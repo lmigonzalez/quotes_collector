@@ -19,7 +19,6 @@ const LoveQuotes = () => {
     })
 	}
 
-  console.log(filterQuotes)
   return (
     <Stack gap={3} className="quotes-container">
      	{filterQuotes && filterQuotes.map(quote=>{

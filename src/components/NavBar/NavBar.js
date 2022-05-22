@@ -50,7 +50,10 @@ const NavBar = () => {
   return (
     <>
       <nav className="nav-bar">
-        <p className="logo">Quotes</p>
+        {/* <p className="logo">Quotes</p> */}
+        <NavLink to="/" className="logo">
+            Quotes
+          </NavLink>
 
         <div className="links">
           <NavLink to="/" className="link">
@@ -92,9 +95,12 @@ const NavBar = () => {
       {menuActive && (
         <div className="mobile-menu" onClick={toggleMenu}>
           <div className="menu-content">
-            <p onClick={handleProfile} className="link link-p">
+            {
+              login && <p onClick={handleProfile} className="link link-p">
               Profile
             </p>
+            }
+            
             <NavLink to="/" className="link">
               All Quotes{" "}
             </NavLink>

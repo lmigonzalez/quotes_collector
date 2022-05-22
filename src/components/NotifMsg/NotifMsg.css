@@ -5,11 +5,12 @@
 	padding: 0.5rem 1rem;
 	background-color: #251D3A;
 	color: #fff;
-	position:absolute;
+	position:fixed;
 	right: 0;
 	animation-name: notification;
 	animation-duration:  1s;
 	z-index: 2;
+
 }
 
 .notification-icon{

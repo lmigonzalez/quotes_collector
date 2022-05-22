@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,14 +13,16 @@ import Addbtn from "../../components/AddBtn/Addbtn";
 import { useStateContext } from "../../context/StateContext";
 
 const Profile = () => {
-
+	const navigate = useNavigate()
 	const {userId, token, name, quoteDeletedMsg, setQuoteDeletedMsg, setNotification, setPopUpMsg, closePopUp} = useStateContext()
 
 	
 	const [quotes, setQuotes] = useState([])
+
+	useEffect(()=>{
+		checkIfToken()
+	}, [])
 	
-
-
 	useEffect(()=>{
 		getUser()
 		getQuotesByUser()
@@ -47,7 +49,6 @@ const Profile = () => {
 
 		axios.get(`http://localhost:3000/api/quote/quotes/${userId}`)
 		.then((res)=>{
-			// console.log(res)
 			setQuotes(res.data)
 		})
 		.catch(err=>{
@@ -85,9 +86,20 @@ const Profile = () => {
 	
 	  }
 
+	  const checkIfToken = () =>{
+		const storedData = JSON.parse(localStorage.getItem('userData'))
+		if(!storedData){
+				navigate('/') 
+		}
+
+	  }
+
+	
+
 
 
   return (
+
     <section className="profile">
       <div className="profile-inf">
         <p>{name}</p>
@@ -101,7 +113,7 @@ const Profile = () => {
 					)
 	
 				})}
-		  </Stack> : <p>No quotes</p>
+		  </Stack> : <p className="no-quotes">You don't have any quotes yet.</p>
 	  }
 	  <Addbtn/>
       
