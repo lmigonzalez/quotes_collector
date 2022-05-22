@@ -1,16 +1,16 @@
 import React from "react";
 import axios from "axios";
-
+import {CopyToClipboard}from 'react-copy-to-clipboard'
 import { BsFillShareFill, BsFillSuitHeartFill } from "react-icons/bs";
 import { IoIosCopy } from "react-icons/io";
-
+import { Link,useNavigate } from "react-router-dom";
 import { useStateContext } from "../../context/StateContext";
 
 import "./Quote.css";
 
 const Quote = ({quote}) => {
-
-  const {userId, token, setLiked, liked, setPopUps} = useStateContext()
+  const navigate = useNavigate()
+  const {userId, token, setLiked, liked, setPopUps, setNotification, setPopUpMsg, closePopUp} = useStateContext()
 
   const checkIfLiked = () =>{
 	  if(quote.likes.includes(userId)){
@@ -51,6 +51,16 @@ const Quote = ({quote}) => {
 
   };
 
+  const shareQuote = () =>{
+
+  }
+
+  const quoteCopied = () =>{
+    setPopUpMsg('quote copied!')
+    setNotification(true)
+    closePopUp()
+  }
+
   return (
     <section className="quote-container">
       <div className="text-container">
@@ -60,8 +70,16 @@ const Quote = ({quote}) => {
 
       <div className="links-container">
         <div className="share-copy">
-          <BsFillShareFill className="icon" />
-          <IoIosCopy className="icon" />
+          <a
+          href={`https://twitter.com/intent/tweet?text=${quote.quote}-${quote.author}`}
+          target='_blank'
+          rel="noopener noreferrer"
+          >
+            <BsFillShareFill className="icon" onClick={shareQuote}/>
+          </a>
+          <CopyToClipboard text={quote.quote}>
+            <IoIosCopy className="icon" onClick={quoteCopied}/>
+          </CopyToClipboard>
         </div>
         <div className="like">
 			{
