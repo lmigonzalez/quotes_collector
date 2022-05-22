@@ -18,7 +18,6 @@ import RegisterMsg from './messages/RegisterMsg';
 import NotifMsg from './components/NotifMsg/NotifMsg';
 import Footer from './components/Footer/Footer';
 import NotFound from './pages/NotFound/NotFound';
-import Addbtn from './components/AddBtn/Addbtn';
 
 import RequireAuth from './components/RequireAuth/RequireAuth';
 
@@ -29,7 +28,7 @@ import {useStateContext} from './context/StateContext'
 
 function App() {
 
-  const {liked, setName, setQuotes, setToken, setUserId, login, setLogin, token, userId, popUps, notification, quoteToUpdate} = useStateContext()
+  const {liked, setName, setQuotes, setToken, setUserId, login, setLogin, token, userId, popUps, notification, quoteToUpdate,backendUrl} = useStateContext()
 
 
 	const isLogin = () =>{
@@ -63,7 +62,7 @@ function App() {
   }, [liked])
 
   function getQuotes(){
-    axios.get('http://localhost:3000/api/quote/quotes')
+    axios.get(`${backendUrl}/api/quote/quotes`)
     .then(res=>{
       setQuotes(res.data)
 
@@ -71,7 +70,6 @@ function App() {
       console.log(err)
     })
   }
-
 
 
   return (

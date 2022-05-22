@@ -10,7 +10,7 @@ import "./Quote.css";
 
 const Quote = ({quote}) => {
   const navigate = useNavigate()
-  const {userId, token, setLiked, liked, setPopUps, setNotification, setPopUpMsg, closePopUp} = useStateContext()
+  const {userId, token, setLiked, liked, setPopUps, setNotification, setPopUpMsg, closePopUp, backendUrl} = useStateContext()
 
   const checkIfLiked = () =>{
 	  if(quote.likes.includes(userId)){
@@ -40,7 +40,7 @@ const Quote = ({quote}) => {
 
 
     axios.patch(
-        `http://localhost:3000/api/quote/likequote/${quote._id}`, {id:userId}, config,
+        `${backendUrl}/api/quote/likequote/${quote._id}`, {id:userId}, config,
       )
       .then((res) => {
 		  setLiked(!liked)

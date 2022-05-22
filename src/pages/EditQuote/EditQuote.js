@@ -10,7 +10,7 @@ import { useStateContext } from "../../context/StateContext";
 const EditQuote = () => {
   const navigate = useNavigate();
 
-  const { quoteToUpdate, token, setNotification, setPopUpMsg, closePopUp } = useStateContext();
+  const { quoteToUpdate, token, setNotification, setPopUpMsg, closePopUp, backendUrl } = useStateContext();
 
 
     useEffect(()=>{
@@ -70,7 +70,7 @@ const EditQuote = () => {
 
     axios
       .patch(
-        `http://localhost:3000/api/quote/update/${quoteToUpdateId}`,
+        `${backendUrl}/api/quote/update/${quoteToUpdateId}`,
         quoteData,
         config
       )

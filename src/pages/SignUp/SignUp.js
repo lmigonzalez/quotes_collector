@@ -11,7 +11,7 @@ import './SignUp.css';
 const SignUp = () =>{
 
 
-	const { setNotification, setPopUpMsg, closePopUp } = useStateContext()
+	const { setNotification, setPopUpMsg, closePopUp, backendUrl } = useStateContext()
 
 	const navigate = useNavigate()
 
@@ -110,7 +110,7 @@ const SignUp = () =>{
 	
 			const data = JSON.stringify(userData)
 	
-			axios.post('http://localhost:3000/api/user/register', data, config)
+			axios.post(`${backendUrl}/api/user/register`, data, config)
 			.then(()=>{
 				setPopUpMsg('successfully registered')
 				setNotification(true)

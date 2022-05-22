@@ -11,7 +11,7 @@ import { useStateContext } from "../../context/StateContext";
 
 const AddQuote = () => {
 
-  const {token, userId, setPopUps, setNotification, setPopUpMsg, closePopUp, setLiked, liked} = useStateContext()
+  const {token, userId, setPopUps, setNotification, setPopUpMsg, closePopUp, setLiked, liked, backendUrl} = useStateContext()
 
 
   const navigate = useNavigate()
@@ -49,7 +49,7 @@ const AddQuote = () => {
 		const data = JSON.stringify(quoteData)
 
 
-		axios.post('http://localhost:3000/api/quote/post', data, config)
+		axios.post(`${backendUrl}/api/quote/post`, data, config)
 		.then(()=>{
       setPopUpMsg('Quote created successfully')
       setNotification(true)

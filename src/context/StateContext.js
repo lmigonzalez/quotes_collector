@@ -15,6 +15,8 @@ export const StateContext = ({children}) =>{
 	const [popUps, setPopUps] = useState(false)
 	const [popUpMsg, setPopUpMsg] =useState(null)
 	const [notification, setNotification] = useState(false)
+
+	const backendUrl = 'https://epic-quotes-backend.herokuapp.com'
 	
 
 	const closePopUp = () =>{
@@ -26,6 +28,7 @@ export const StateContext = ({children}) =>{
 	return(
 		<Context.Provider
 		value={{
+			backendUrl,
 			token,
 			userId,
 			quotes,

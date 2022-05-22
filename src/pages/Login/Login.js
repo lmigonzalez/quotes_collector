@@ -12,7 +12,7 @@ import { useStateContext } from "../../context/StateContext";
 
 const Login = () => {
 
-const {setToken, setUserId, setName, setNotification, setPopUpMsg, closePopUp } = useStateContext()
+const {setToken, setUserId, setName, setNotification, setPopUpMsg, closePopUp, backendUrl } = useStateContext()
   const navigate = useNavigate()
 
   const initialData = {
@@ -35,7 +35,7 @@ const {setToken, setUserId, setName, setNotification, setPopUpMsg, closePopUp } 
 
 		const data = JSON.stringify(userData)
 
-		axios.post('http://localhost:3000/api/user/login', data, config)
+		axios.post(`${backendUrl}/api/user/login`, data, config)
 		.then(res=>{
       setToken(res.data.token)
       setUserId(res.data.user.id)

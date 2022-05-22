@@ -14,7 +14,7 @@ import { useStateContext } from "../../context/StateContext";
 
 const Profile = () => {
 	const navigate = useNavigate()
-	const {userId, token, name, quoteDeletedMsg, setQuoteDeletedMsg, setNotification, setPopUpMsg, closePopUp} = useStateContext()
+	const {userId, token, name, quoteDeletedMsg, setQuoteDeletedMsg, setNotification, setPopUpMsg, closePopUp, backendUrl} = useStateContext()
 
 	
 	const [quotes, setQuotes] = useState([])
@@ -31,7 +31,7 @@ const Profile = () => {
 	const getUser = () =>{
 
 		if(userId)(
-			axios.get(`http://localhost:3000/api/user/userid/${userId}`)
+			axios.get(`${backendUrl}/api/user/userid/${userId}`)
 			.then(()=>{
 			
 				getQuotesByUser()
@@ -47,7 +47,7 @@ const Profile = () => {
 
 	const getQuotesByUser = () =>{
 
-		axios.get(`http://localhost:3000/api/quote/quotes/${userId}`)
+		axios.get(`${backendUrl}/api/quote/quotes/${userId}`)
 		.then((res)=>{
 			setQuotes(res.data)
 		})
@@ -71,7 +71,7 @@ const Profile = () => {
 			
 		
 	  
-			  axios.delete(`http://localhost:3000/api/quote/deletequote/${quoteId}`, config)
+			  axios.delete(`${backendUrl}/api/quote/deletequote/${quoteId}`, config)
 			  .then(()=>{
 				setPopUpMsg('quote deleted successfully')
 				setNotification(true)
