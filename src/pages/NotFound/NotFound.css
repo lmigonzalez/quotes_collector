@@ -1,0 +1,24 @@
+.not-found{
+	height: 80vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.not-found img{
+	width: 10rem;
+	margin-bottom: 1rem;
+}
+.not-found h2{
+	font-size: 3rem;
+}
+.not-found p{
+	font-size: 1.3rem;
+}
+
+.back-home{
+	color: #4B7BE5;
+	cursor: pointer;
+}

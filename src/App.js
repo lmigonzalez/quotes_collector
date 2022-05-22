@@ -17,6 +17,7 @@ import EditQuote from './pages/EditQuote/EditQuote';
 import RegisterMsg from './messages/RegisterMsg';
 import NotifMsg from './components/NotifMsg/NotifMsg';
 import Footer from './components/Footer/Footer';
+import NotFound from './pages/NotFound/NotFound';
 import Addbtn from './components/AddBtn/Addbtn';
 
 import RequireAuth from './components/RequireAuth/RequireAuth';
@@ -95,17 +96,17 @@ function App() {
         <Route path='/addquote' element={<AddQuote/>}></Route>
 
         <Route path='/profile/:id' element={<Profile />}></Route>
+
         <Route path='/editquote/:id' element={
           <RequireAuth redirectTo='/'>
             <EditQuote />
           </RequireAuth>
         }>
-
         </Route>
-        {/* <Route path='/editquote/:id' element={<EditQuote/>}></Route> */}
+        <Route path='*' element={<NotFound/>}></Route>
+     
       </Routes>
 
-      {/* <Addbtn/> */}
       <Footer/>
    
     </section>

@@ -34,7 +34,11 @@
 .links-container p{
 	display: contents;
 	font-size: 1.3rem;
-	background-color: aqua;
+
+}
+
+.quote-author{
+	text-align: end;
 }
 
 .like{
@@ -50,4 +54,13 @@
 	margin-right: 1rem;
 	cursor: pointer;
 	color: red;
+}
+
+.share-btn{
+	list-style: none;
+	color: black;
+}
+
+.copy-btn:hover{
+	color: #4B7BE5;
 }

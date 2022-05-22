@@ -65,20 +65,21 @@ const Quote = ({quote}) => {
     <section className="quote-container">
       <div className="text-container">
         <p>{quote.quote}</p>
-        <p>{quote.author?quote.author: 'unknown'}</p>
+        <p className="quote-author">{quote.author?quote.author: 'unknown'}</p>
       </div>
 
       <div className="links-container">
         <div className="share-copy">
           <a
-          href={`https://twitter.com/intent/tweet?text=${quote.quote}-${quote.author}`}
+          className="share-btn"
+          href={`https://twitter.com/intent/tweet?text=${quote.quote} -${quote.author}`}
           target='_blank'
           rel="noopener noreferrer"
           >
             <BsFillShareFill className="icon" onClick={shareQuote}/>
           </a>
-          <CopyToClipboard text={quote.quote}>
-            <IoIosCopy className="icon" onClick={quoteCopied}/>
+          <CopyToClipboard text={`${quote.quote} -${quote.author}`}>
+            <IoIosCopy className="icon copy-btn" onClick={quoteCopied}/>
           </CopyToClipboard>
         </div>
         <div className="like">
