@@ -9,7 +9,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { useStateContext } from "../../context/StateContext";
 
 const NavBar = () => {
-  const { userId, login, token, setToken, setUserId, setPopUps, popUps, setNotification, setPopUpMsg, closePopUp } =
+  const { userId, login, setToken, setUserId, setPopUps, setNotification, setPopUpMsg, closePopUp } =
     useStateContext();
 
   const navigate = useNavigate();

@@ -9,13 +9,14 @@ import './Profile.css'
 
 import MyQuote from "../../components/MyQuote/MyQuote";
 import Addbtn from "../../components/AddBtn/Addbtn";
+import Spinner from "../../components/Spinner/Spinner";
 
 import { useStateContext } from "../../context/StateContext";
 
 const Profile = () => {
 	const [updatePage, setUpdatePage] = useState(false)
 	const navigate = useNavigate()
-	const {userId, token, name, quoteDeletedMsg, setQuoteDeletedMsg, setNotification, setPopUpMsg, closePopUp, backendUrl} = useStateContext()
+	const {userId, token, name, quoteDeletedMsg, setNotification, setPopUpMsg, closePopUp, backendUrl} = useStateContext()
 
 	
 	const [quotes, setQuotes] = useState([])
@@ -94,6 +95,10 @@ const Profile = () => {
 		}
 
 	  }
+
+	  if(quotes.length <= 0 || quotes == null){
+		return <Spinner/>
+	}
 
 	
 

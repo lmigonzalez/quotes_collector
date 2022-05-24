@@ -19,6 +19,7 @@ import NotifMsg from './components/NotifMsg/NotifMsg';
 import Footer from './components/Footer/Footer';
 import NotFound from './pages/NotFound/NotFound';
 
+
 import RequireAuth from './components/RequireAuth/RequireAuth';
 
 
@@ -28,7 +29,7 @@ import {useStateContext} from './context/StateContext'
 
 function App() {
 
-  const {liked, setName, setQuotes, setToken, setUserId, login, setLogin, token, userId, popUps, notification, quoteToUpdate,backendUrl} = useStateContext()
+  const {liked, setName, setQuotes, setToken, setUserId, setLogin, token, popUps, notification, backendUrl} = useStateContext()
 
 
 	const isLogin = () =>{

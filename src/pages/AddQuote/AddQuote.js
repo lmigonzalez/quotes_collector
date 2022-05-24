@@ -11,7 +11,7 @@ import { useStateContext } from "../../context/StateContext";
 
 const AddQuote = () => {
 
-  const {token, userId, setPopUps, setNotification, setPopUpMsg, closePopUp, setLiked, liked, backendUrl} = useStateContext()
+  const {token, userId, setNotification, setPopUpMsg, closePopUp, setLiked, liked, backendUrl} = useStateContext()
 
 
   const navigate = useNavigate()

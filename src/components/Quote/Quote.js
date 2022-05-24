@@ -3,13 +3,13 @@ import axios from "axios";
 import {CopyToClipboard}from 'react-copy-to-clipboard'
 import { BsFillShareFill, BsFillSuitHeartFill } from "react-icons/bs";
 import { IoIosCopy } from "react-icons/io";
-import { Link,useNavigate } from "react-router-dom";
+
 import { useStateContext } from "../../context/StateContext";
 
 import "./Quote.css";
 
 const Quote = ({quote}) => {
-  const navigate = useNavigate()
+ 
   const {userId, token, setLiked, liked, setPopUps, setNotification, setPopUpMsg, closePopUp, backendUrl} = useStateContext()
 
   const checkIfLiked = () =>{
@@ -34,8 +34,6 @@ const Quote = ({quote}) => {
 			Authorization: `Bearer ${token}`,
 		},
     };
-	const id = JSON.stringify(userId)
-
 
 
 
