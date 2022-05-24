@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# <center> Quotes Collector </center>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## A brief description: ##
+This is a Full Stack App where you have the option to get some great quotes. You can copy and share quotes white a single click. But it doesn't stop there. The fun part comes when you register and log in. Once you log in, you can submit and give likes to quotes. You can go to your profile and edit or delete any quote you have previously created. If you leave the website and come back in another moment, you won't have to log in since I configured the section to last one year unless you're logged out. User Data and Quote data get saved in a MongoDB database.
 
-In the project directory, you can run:
+**Backend link hosted in Heroku:** [Quotes Collector Backend](https://epic-quotes-backend.herokuapp.com/api/quote/quotes)
 
-### `npm start`
+ *-If you would like to see the code I use in the backend please contact me and I will gladly provide it to you. The Repo is private for security reasons.*
+## The techs I use: ##
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Front-End: ###
+-React.js
+-React Router
+-Content API
+-Axios
+-CSS
+-Bootstrap
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend: ###
+-Node.js
+-Express
+-MongoDB
+-Mongoose
+-JWT
 
-### `npm test`
+### A brief tour of the website: ###
+This is the homepage, the first page you see when you enter the website. From here, you can share and copy every quote:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![alt text](/src/readmeImg/home.png)
 
-### `npm run build`
+When you click the share icon, it takes you to your Twitter account so you can easily share the quote:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![alt text](/src/readmeImg/twitter.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you go to log in, you can log in with your account. If you haven't created one, you can click on the create account link and create a new one. You can use a demo email, but it must be an email since the form has validation. Once registered, it will take you to the login page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![alt text](/src/readmeImg/login.png)
 
-### `npm run eject`
+![alt text](/src/readmeImg/signup.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Once logged in, you will be redirected to the homepage, and from there, you can see all quotes you have liked. And create new ones.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![alt text](/src/readmeImg/homelogin.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+You also will be provided with a profile where you can navigate to see all quotes you have created previously and delete or edit them.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![alt text](/src/readmeImg/profile.png)
 
-## Learn More
+![alt text](/src/readmeImg/update.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This website also has a 404 page.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![alt text](/src/readmeImg/404.png)
