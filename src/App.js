@@ -32,15 +32,7 @@ function App() {
   const {liked, setName, setQuotes, setToken, setUserId, setLogin, token, popUps, notification, backendUrl} = useStateContext()
 
 
-	const isLogin = () =>{
-		if(token != null){
-			setLogin(true)
-		}else{
-			setLogin(false)
-		}
 
-
-	}
 
 
   useEffect(()=>{
@@ -62,6 +54,16 @@ function App() {
     getQuotes()
   }, [liked])
 
+  const isLogin = () =>{
+		if(token != null){
+			setLogin(true)
+		}else{
+			setLogin(false)
+		}
+
+
+	}
+
   function getQuotes(){
     axios.get(`${backendUrl}/api/quote/quotes`)
     .then(res=>{
@@ -82,6 +84,7 @@ function App() {
       {popUps && <RegisterMsg/>}
       
       <Routes>
+        
         <Route path='/' element={<Quotes/>}></Route>
 
         <Route path='/lovequotes' element={<LoveQuotes/>}></Route>

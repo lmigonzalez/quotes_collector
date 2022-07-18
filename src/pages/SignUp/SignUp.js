@@ -19,7 +19,6 @@ const SignUp = () =>{
 		name: '',
 		email: '',
 		password: '',
-		
 
 	}
 
@@ -43,6 +42,7 @@ const SignUp = () =>{
 	
 	
 		if(e.target.name === 'name'){
+			
 			if(!e.target.value.trim().length){
 				setError({...error, name: '', })
 			
@@ -94,12 +94,6 @@ const SignUp = () =>{
 
 	const handleSubmit = (e) =>{
 		e.preventDefault();
-
-		// if(userData.name.length < 3 || userData.name.length >= 20 || userData.email.length < 5 || !userData.email.includes('@') || userData.password < 6){
-
-		// 	console.log('all ')
-
-		// }
 	
 
 			const config = {
